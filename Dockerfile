@@ -1,6 +1,5 @@
 FROM alpine:3.19 as builder
 
-#RUN apt install build-essential cmake ninja openssl zlib1g-dev gperf 
 RUN apk add gcc g++ make cmake ninja openssl-dev zlib-dev gperf
 
 WORKDIR /usr/src/app
@@ -12,6 +11,8 @@ RUN cmake -DCMAKE_BUILD_TYPE=Release -S . -B build -G Ninja
 RUN ninja -C build
 
 FROM alpine:3.19 as final
+
+RUN apk add openssl zlib gperf
 
 WORKDIR /app
 COPY --from=builder /usr/src/app/build/telegram-bot-api .
