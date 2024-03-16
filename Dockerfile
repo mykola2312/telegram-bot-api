@@ -17,4 +17,7 @@ RUN apk add openssl zlib gperf
 WORKDIR /app
 COPY --from=builder /usr/src/app/build/telegram-bot-api .
 
-ENTRYPOINT [ "/app/telegram-bot-api", "--api-id=${API_ID}", "--api-hash=${API_HASH}", "--local", "-http-port=${HTTP_PORT}" ]
+ARG API_ID
+ARG API_HASH
+ARG HTTP_PORT
+ENTRYPOINT /app/telegram-bot-api --api-id=$API_ID --api-hash=$API_HASH --local --http-port=$HTTP_PORT
