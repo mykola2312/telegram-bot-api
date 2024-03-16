@@ -20,4 +20,6 @@ COPY --from=builder /usr/src/app/build/telegram-bot-api .
 ARG API_ID
 ARG API_HASH
 ARG HTTP_PORT
-ENTRYPOINT /app/telegram-bot-api --api-id=$API_ID --api-hash=$API_HASH --local --http-port=$HTTP_PORT
+ARG DIR
+ARG TEMP_DIR
+ENTRYPOINT /app/telegram-bot-api --api-id=$API_ID --api-hash=$API_HASH --local --http-port=$HTTP_PORT --dir=$DIR --temp-dir=$TEMP_DIR
