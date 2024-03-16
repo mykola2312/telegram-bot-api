@@ -1,6 +1,6 @@
 FROM alpine:3.19 as builder
 
-RUN apk add gcc g++ make cmake ninja openssl-dev zlib-dev gperf
+RUN apk add gcc g++ make cmake ninja openssl-dev zlib-dev gperf linux-headers
 
 WORKDIR /usr/src/app
 COPY CMakeLists.txt .
